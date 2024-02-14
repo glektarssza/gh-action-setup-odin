@@ -30,7 +30,14 @@
     "engines": {
         "node": ">=20"
     },
-    "scripts": {},
+    "scripts": {
+        "build": "npm run build:dist",
+        "build:dist": "npx tsc --project ./src/ --outDir ./dist/",
+        "clean": "npm run clean:dist",
+        "clean:dist": "npx rimraf ./dist/",
+        "test": "npm run test:ci",
+        "test:ci": "npx mocha --config ./.mocharc.js"
+    },
     "devDependencies": {
         "@types/chai": "^4.3.11",
         "@types/mocha": "^10.0.6",

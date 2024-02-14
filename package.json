@@ -1,0 +1,36 @@
+{
+    "name": "gh-action-setup-odin",
+    "description": "Setup an environment for building and running Odin projects.",
+    "version": "0.0.0",
+    "private": true,
+    "author": {
+        "name": "G'lek Tarssza",
+        "email": "glek@glektarssza.com",
+        "url": "https://glektarssza.com"
+    },
+    "keywords": [
+        "github",
+        "action",
+        "actions",
+        "gh",
+        "setup",
+        "odin"
+    ],
+    "homepage": "https://github.com/glektarssza/gh-action-setup-odin",
+    "bugs": {
+        "url": "https://github.com/glektarssza/gh-action-setup-odin/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/glektarssza/gh-action-setup-odin"
+    },
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}

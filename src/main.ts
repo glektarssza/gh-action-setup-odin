@@ -46,6 +46,13 @@ async function main(): Promise<void> {
     } finally {
         await archiveFile.close();
     }
+    if (process.platform !== 'win32') {
+        core.info('Making Odin binary executable...');
+        await fs.chmod(
+            path.resolve(destinationPath, 'odin'),
+            fs.constants.S_IXUSR
+        );
+    }
     core.setOutput('odin-version', odinVersion.join('-'));
     core.setOutput('odin-path', destinationPath);
     core.setOutput(

@@ -25,5 +25,5 @@ outputs:
     description: The path to the Odin binary that was downloaded and unpacked.
 runs:
   using: node20
-  main: ./dist/main.js
-  post: ./dist/post.js
+  main: ./dist/main/index.js
+  post: ./dist/post/index.js

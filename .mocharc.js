@@ -40,16 +40,20 @@ process.env['TS_NODE_PROJECT'] = path.resolve(
  * @type {Record<string, any>}
  */
 const config = {
-    spec: path.resolve(__dirname, './tests/**.spec.mts'),
+    spec: path.resolve(__dirname, './tests/**.spec.ts'),
     ui: 'bdd',
     reporter: 'spec',
     jobs: jobCount,
     parallel: enableParallel,
-    extension: ['mts'],
+    extension: ['ts'],
     recursive: false,
     failZero: false,
     checkLeaks: true,
-    import: ['./install-hooks.mjs']
+    require: [
+        'source-map-support/register',
+        'ts-node/register',
+        'tsconfig-paths/register'
+    ]
 };
 
 module.exports = config;

@@ -1,0 +1,75 @@
+{
+    "name": "gh-action-setup-odin",
+    "description": "Setup an environment for building and running Odin projects.",
+    "version": "0.0.0",
+    "private": true,
+    "author": {
+        "name": "G'lek Tarssza",
+        "email": "glek@glektarssza.com",
+        "url": "https://glektarssza.com"
+    },
+    "keywords": [
+        "github",
+        "action",
+        "actions",
+        "gh",
+        "setup",
+        "odin"
+    ],
+    "homepage": "https://github.com/glektarssza/gh-action-setup-odin",
+    "bugs": {
+        "url": "https://github.com/glektarssza/gh-action-setup-odin/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/glektarssza/gh-action-setup-odin"
+    },
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {
+        "prepare": "husky",
+        "lint:base": "eslint --ext .ts",
+        "lint:cache": "npm run lint:base -- --cache",
+        "lint": "npm run lint:cache -- -- ./src/ ./tests/",
+        "lint:ci": "npm run lint -- -- -- ./src/ ./tests/",
+        "test": "mocha",
+        "test:ci": "npm run coverage",
+        "coverage": "nyc npm run test",
+        "coverage:report": "nyc report",
+        "coverage:report:html": "npm run coverage:report -- --reporter=html --report-dir=coverage",
+        "build": "npm run build:dist",
+        "build:dist": "tsc --project ./src/ --outDir ./dist/",
+        "clean": "npm run clean:dist",
+        "clean:dist": "rimraf ./dist/",
+        "rebuild": "npm run clean && npm run build",
+        "rebuild:dist": "npm run clean:dist && npm run build:dist"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^8.4.1",
+        "@types/chai": "^4.3.11",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "^20.11.17",
+        "@types/sinon": "^17.0.3",
+        "@typescript-eslint/eslint-plugin": "^7.0.1",
+        "@typescript-eslint/parser": "^7.0.1",
+        "chai": "^4.4.1",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-tsdoc": "^0.2.17",
+        "husky": "^9.0.11",
+        "mocha": "^10.3.0",
+        "nyc": "^15.1.0",
+        "prettier-eslint": "^16.3.0",
+        "rimraf": "^5.0.5",
+        "sinon": "^17.0.1",
+        "source-map-support": "^0.5.21",
+        "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.3.3"
+    }
+}

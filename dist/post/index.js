@@ -24710,19 +24710,42 @@ exports["default"] = _default;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const promises_1 = __importDefault(__nccwpck_require__(3977));
-const core_1 = __importDefault(__nccwpck_require__(2186));
+const core = __importStar(__nccwpck_require__(2186));
 async function main() {
-    const odinPath = core_1.default.getState('odin-path');
+    const odinPath = core.getState('odin-path');
     try {
         await promises_1.default.access(odinPath);
     }
     catch (_a) {
-        core_1.default.warning(`Could not find Odin path at "${odinPath}"`);
+        core.warning(`Could not find Odin path at "${odinPath}"`);
         return;
     }
     const stat = await promises_1.default.stat(odinPath);
@@ -24732,9 +24755,9 @@ async function main() {
     await promises_1.default.rm(odinPath, { recursive: true, force: true });
 }
 main().catch((err) => {
-    core_1.default.setFailed(err.message);
+    core.setFailed(err.message);
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZmlsZTovLy9Vc2Vycy85ODkyNzAxNjAvUHJvamVjdHMvZ2gtYWN0aW9uLXNldHVwLW9kaW4vc3JjL3Bvc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFDQSxnRUFBa0M7QUFHbEMseURBQWlDO0FBRWpDLEtBQUssVUFBVSxJQUFJO0lBQ2YsTUFBTSxRQUFRLEdBQUcsY0FBSSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsQ0FBQztJQUM1QyxJQUFJLENBQUM7UUFDRCxNQUFNLGtCQUFFLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQyxDQUFDO0lBQzlCLENBQUM7SUFBQyxXQUFNLENBQUM7UUFDTCxjQUFJLENBQUMsT0FBTyxDQUFDLGdDQUFnQyxRQUFRLEdBQUcsQ0FBQyxDQUFDO1FBQzFELE9BQU87SUFDWCxDQUFDO0lBQ0QsTUFBTSxJQUFJLEdBQUcsTUFBTSxrQkFBRSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQztJQUNyQyxJQUFJLENBQUMsSUFBSSxDQUFDLFdBQVcsRUFBRSxFQUFFLENBQUM7UUFDdEIsTUFBTSxJQUFJLEtBQUssQ0FBQyxrQkFBa0IsUUFBUSxxQkFBcUIsQ0FBQyxDQUFDO0lBQ3JFLENBQUM7SUFDRCxNQUFNLGtCQUFFLENBQUMsRUFBRSxDQUFDLFFBQVEsRUFBRSxFQUFDLFNBQVMsRUFBRSxJQUFJLEVBQUUsS0FBSyxFQUFFLElBQUksRUFBQyxDQUFDLENBQUM7QUFDMUQsQ0FBQztBQUVELElBQUksRUFBRSxDQUFDLEtBQUssQ0FBQyxDQUFDLEdBQVUsRUFBRSxFQUFFO0lBQ3hCLGNBQUksQ0FBQyxTQUFTLENBQUMsR0FBRyxDQUFDLE9BQU8sQ0FBQyxDQUFDO0FBQ2hDLENBQUMsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLy8tLSBOb2RlSlNcbmltcG9ydCBmcyBmcm9tICdub2RlOmZzL3Byb21pc2VzJztcblxuLy8tLSBOUE0gUGFja2FnZXNcbmltcG9ydCBjb3JlIGZyb20gJ0BhY3Rpb25zL2NvcmUnO1xuXG5hc3luYyBmdW5jdGlvbiBtYWluKCk6IFByb21pc2U8dm9pZD4ge1xuICAgIGNvbnN0IG9kaW5QYXRoID0gY29yZS5nZXRTdGF0ZSgnb2Rpbi1wYXRoJyk7XG4gICAgdHJ5IHtcbiAgICAgICAgYXdhaXQgZnMuYWNjZXNzKG9kaW5QYXRoKTtcbiAgICB9IGNhdGNoIHtcbiAgICAgICAgY29yZS53YXJuaW5nKGBDb3VsZCBub3QgZmluZCBPZGluIHBhdGggYXQgXCIke29kaW5QYXRofVwiYCk7XG4gICAgICAgIHJldHVybjtcbiAgICB9XG4gICAgY29uc3Qgc3RhdCA9IGF3YWl0IGZzLnN0YXQob2RpblBhdGgpO1xuICAgIGlmICghc3RhdC5pc0RpcmVjdG9yeSgpKSB7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgQ2Fubm90IHJlbW92ZSBcIiR7b2RpblBhdGh9XCIgKG5vdCBhIGRpcmVjdG9yeSlgKTtcbiAgICB9XG4gICAgYXdhaXQgZnMucm0ob2RpblBhdGgsIHtyZWN1cnNpdmU6IHRydWUsIGZvcmNlOiB0cnVlfSk7XG59XG5cbm1haW4oKS5jYXRjaCgoZXJyOiBFcnJvcikgPT4ge1xuICAgIGNvcmUuc2V0RmFpbGVkKGVyci5tZXNzYWdlKTtcbn0pO1xuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZmlsZTovLy9Vc2Vycy85ODkyNzAxNjAvUHJvamVjdHMvZ2gtYWN0aW9uLXNldHVwLW9kaW4vc3JjL3Bvc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUNBLGdFQUFrQztBQUdsQyxvREFBc0M7QUFFdEMsS0FBSyxVQUFVLElBQUk7SUFDZixNQUFNLFFBQVEsR0FBRyxJQUFJLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxDQUFDO0lBQzVDLElBQUksQ0FBQztRQUNELE1BQU0sa0JBQUUsQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLENBQUM7SUFDOUIsQ0FBQztJQUFDLFdBQU0sQ0FBQztRQUNMLElBQUksQ0FBQyxPQUFPLENBQUMsZ0NBQWdDLFFBQVEsR0FBRyxDQUFDLENBQUM7UUFDMUQsT0FBTztJQUNYLENBQUM7SUFDRCxNQUFNLElBQUksR0FBRyxNQUFNLGtCQUFFLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxDQUFDO0lBQ3JDLElBQUksQ0FBQyxJQUFJLENBQUMsV0FBVyxFQUFFLEVBQUUsQ0FBQztRQUN0QixNQUFNLElBQUksS0FBSyxDQUFDLGtCQUFrQixRQUFRLHFCQUFxQixDQUFDLENBQUM7SUFDckUsQ0FBQztJQUNELE1BQU0sa0JBQUUsQ0FBQyxFQUFFLENBQUMsUUFBUSxFQUFFLEVBQUMsU0FBUyxFQUFFLElBQUksRUFBRSxLQUFLLEVBQUUsSUFBSSxFQUFDLENBQUMsQ0FBQztBQUMxRCxDQUFDO0FBRUQsSUFBSSxFQUFFLENBQUMsS0FBSyxDQUFDLENBQUMsR0FBVSxFQUFFLEVBQUU7SUFDeEIsSUFBSSxDQUFDLFNBQVMsQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFDLENBQUM7QUFDaEMsQ0FBQyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tIE5vZGVKU1xuaW1wb3J0IGZzIGZyb20gJ25vZGU6ZnMvcHJvbWlzZXMnO1xuXG4vLy0tIE5QTSBQYWNrYWdlc1xuaW1wb3J0ICogYXMgY29yZSBmcm9tICdAYWN0aW9ucy9jb3JlJztcblxuYXN5bmMgZnVuY3Rpb24gbWFpbigpOiBQcm9taXNlPHZvaWQ+IHtcbiAgICBjb25zdCBvZGluUGF0aCA9IGNvcmUuZ2V0U3RhdGUoJ29kaW4tcGF0aCcpO1xuICAgIHRyeSB7XG4gICAgICAgIGF3YWl0IGZzLmFjY2VzcyhvZGluUGF0aCk7XG4gICAgfSBjYXRjaCB7XG4gICAgICAgIGNvcmUud2FybmluZyhgQ291bGQgbm90IGZpbmQgT2RpbiBwYXRoIGF0IFwiJHtvZGluUGF0aH1cImApO1xuICAgICAgICByZXR1cm47XG4gICAgfVxuICAgIGNvbnN0IHN0YXQgPSBhd2FpdCBmcy5zdGF0KG9kaW5QYXRoKTtcbiAgICBpZiAoIXN0YXQuaXNEaXJlY3RvcnkoKSkge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbm5vdCByZW1vdmUgXCIke29kaW5QYXRofVwiIChub3QgYSBkaXJlY3RvcnkpYCk7XG4gICAgfVxuICAgIGF3YWl0IGZzLnJtKG9kaW5QYXRoLCB7cmVjdXJzaXZlOiB0cnVlLCBmb3JjZTogdHJ1ZX0pO1xufVxuXG5tYWluKCkuY2F0Y2goKGVycjogRXJyb3IpID0+IHtcbiAgICBjb3JlLnNldEZhaWxlZChlcnIubWVzc2FnZSk7XG59KTtcbiJdfQ==
 
 /***/ }),
 

@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 
 //-- NPM Packages
-import core from '@actions/core';
+import * as core from '@actions/core';
 
 async function main(): Promise<void> {
     const odinPath = core.getState('odin-path');

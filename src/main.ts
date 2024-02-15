@@ -3,8 +3,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 //-- NPM Packages
-import core from '@actions/core';
-import compressing from 'compressing';
+import * as core from '@actions/core';
+import * as compressing from 'compressing';
 
 //-- Project Code
 import {

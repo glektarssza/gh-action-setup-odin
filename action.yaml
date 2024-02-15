@@ -5,6 +5,10 @@ branding:
   icon: package
   color: blue
 inputs:
+  auth-token:
+    description: The authentication token to use to talk to GitHub APIs.
+    default: ${{github.token}}
+    required: false
   odin-version:
     description: The version of Odin to setup or `latest` to setup the latest version.
     required: true

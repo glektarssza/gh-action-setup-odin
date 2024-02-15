@@ -9,7 +9,7 @@ async function main(): Promise<void> {
     try {
         await fs.access(odinPath);
     } catch {
-        core.warning(`Could not access Odin path at "${odinPath}"`);
+        core.warning(`Could not find Odin path at "${odinPath}"`);
         return;
     }
     const stat = await fs.stat(odinPath);

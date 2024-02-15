@@ -19,6 +19,7 @@ async function main(): Promise<void> {
     const octokit = createOctokit();
     const version = core.getInput('odin-version', {required: true});
     let destinationPath = core.getInput('destination', {required: false});
+    const addToPath = core.getBooleanInput('add-to-path', {required: false});
     if (!destinationPath) {
         destinationPath = path.resolve(
             process.env['GITHUB_WORKSPACE']!,
@@ -52,7 +53,9 @@ async function main(): Promise<void> {
             `./odin${process.platform === 'win32' ? '.exe' : ''}`
         )
     );
-    core.addPath(destinationPath);
+    if (addToPath) {
+        core.addPath(destinationPath);
+    }
     core.saveState('odin-path', destinationPath);
 }
 

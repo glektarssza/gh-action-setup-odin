@@ -11,7 +11,8 @@ inputs:
     required: false
   odin-version:
     description: The version of Odin to setup or `latest` to setup the latest version.
-    required: true
+    default: latest
+    required: false
   destination:
     description: The location to download and unpack Odin to.
     default: ${{github.workspace}}/.odin

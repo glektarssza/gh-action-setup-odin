@@ -16,7 +16,7 @@
         "setup",
         "odin"
     ],
-    "homepage": "https://github.com/glektarssza/gh-action-setup-odin",
+    "homepage": "https://github.com/marketplace/actions/setup-odin-environment",
     "bugs": {
         "url": "https://github.com/glektarssza/gh-action-setup-odin/issues"
     },

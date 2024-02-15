@@ -48,7 +48,8 @@ const config = {
     extension: ['mts'],
     recursive: false,
     failZero: false,
-    checkLeaks: true
+    checkLeaks: true,
+    import: ['./install-hooks.mjs']
 };
 
 module.exports = config;

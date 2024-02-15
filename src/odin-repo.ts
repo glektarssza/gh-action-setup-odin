@@ -9,6 +9,7 @@ import {
     downloadRepositoryReleaseAsset,
     getRepositoryLatestRelease,
     getRepositoryReleaseByTag,
+    listRepositoryReleaseAssets,
     Octokit,
     Release
 } from './utils';
@@ -139,13 +140,42 @@ const m = {
         octokit: Octokit
     ): Promise<PathLike> {
         core.info(
-            `Downloading Odin release "${version.join('-')}" to "${destinationFolder.toString('utf-8')}"...`
+            `Downloading Odin version "${version.join('-')}" to "${destinationFolder.toString('utf-8')}"...`
         );
+        const release = await m.findRelease(version, octokit);
+        const assets = await listRepositoryReleaseAssets(
+            {
+                owner: 'odin-lang',
+                repo: 'odin',
+                release_id: release.id
+            },
+            octokit
+        );
+        let odinTargetOS: 'windows' | 'macos' | 'ubuntu';
+        switch (process.platform) {
+            case 'win32':
+                odinTargetOS = 'windows';
+                break;
+            case 'darwin':
+                odinTargetOS = 'macos';
+                break;
+            case 'linux':
+                odinTargetOS = 'ubuntu';
+                break;
+            default:
+                throw new Error(`Unsupported platform "${process.platform}"`);
+        }
+        const odinAsset = assets.find(({name}) => name.includes(odinTargetOS));
+        if (!odinAsset) {
+            throw new Error(
+                `Could not find a suitable Odin archive for platform "${process.platform}"`
+            );
+        }
         const archivePath = await downloadRepositoryReleaseAsset(
             {
                 owner: 'odin-lang',
                 repo: 'odin',
-                asset_id: (await m.findRelease(version, octokit)).id
+                asset_id: odinAsset.id
             },
             destinationFolder,
             octokit

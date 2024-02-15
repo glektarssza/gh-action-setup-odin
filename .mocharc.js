@@ -48,12 +48,7 @@ const config = {
     extension: ['ts'],
     recursive: false,
     failZero: false,
-    checkLeaks: true,
-    require: [
-        'source-map-support/register',
-        'tsconfig-paths/register',
-        'ts-node/register/transpile-only'
-    ]
+    checkLeaks: true
 };
 
 module.exports = config;

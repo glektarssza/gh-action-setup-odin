@@ -40,12 +40,12 @@ process.env['TS_NODE_PROJECT'] = path.resolve(
  * @type {Record<string, any>}
  */
 const config = {
-    spec: path.resolve(__dirname, './tests/**.spec.ts'),
+    spec: path.resolve(__dirname, './tests/**.spec.mts'),
     ui: 'bdd',
     reporter: 'spec',
     jobs: jobCount,
     parallel: enableParallel,
-    extension: ['ts'],
+    extension: ['mts'],
     recursive: false,
     failZero: false,
     checkLeaks: true

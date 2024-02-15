@@ -4,7 +4,7 @@ import {} from 'sinon';
 import {base, en, en_US, en_CA, Faker} from '@faker-js/faker';
 
 //-- Project Code
-import {getTestingModule} from '@src/index';
+import {getTestingModule} from '../src/index.mts';
 
 /**
  * The fake data provider.

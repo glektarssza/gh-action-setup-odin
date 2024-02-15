@@ -1,0 +1,34 @@
+name: Setup Odin
+description: Setup an environment for building and running Odin projects.
+author: "G'lek Tarssza"
+branding:
+  icon: package
+  color: blue
+inputs:
+  auth-token:
+    description: The authentication token to use to talk to GitHub APIs.
+    default: ${{github.token}}
+    required: false
+  odin-version:
+    description: The version of Odin to setup or `latest` to setup the latest version.
+    default: latest
+    required: false
+  destination:
+    description: The location to download and unpack Odin to.
+    default: ${{github.workspace}}/.odin
+    required: false
+  add-to-path:
+    description: Whether to add the path to the Odin binary to the system path.
+    default: true
+    required: false
+outputs:
+  odin-version:
+    description: The version of Odin that was downloaded and unpacked.
+  odin-path:
+    description: The path to which Odin was downloaded and unpacked.
+  odin-binary-path:
+    description: The path to the Odin binary that was downloaded and unpacked.
+runs:
+  using: node20
+  main: ./dist/main/index.js
+  post: ./dist/post/index.js

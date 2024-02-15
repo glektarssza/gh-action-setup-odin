@@ -1,6 +1,9 @@
 //-- NodeJS
 import {PathLike} from 'node:fs';
 
+//-- NPM Packages
+import * as core from '@actions/core';
+
 //-- Project Code
 import {
     downloadRepositoryReleaseAsset,
@@ -69,6 +72,7 @@ const m = {
      * Thrown if the month component is not a valid month number.
      */
     parseVersion(str: string): OdinVersion {
+        core.debug(`Parsing Odin version from "${str}"...`);
         const split = str.split('-');
         if (split.length !== 3) {
             throw new Error(
@@ -91,10 +95,13 @@ const m = {
                 `Cannot parse Odin version (invalid month "${month}")`
             );
         }
+        core.debug(`Parsed Odin version`);
+        core.debug(`Stream: ${stream}, Year: ${year}, Month: ${month}`);
         return [stream as OdinStream, year, month];
     },
 
     async getLatestRelease(octokit: Octokit): Promise<OdinVersion> {
+        core.info('Getting latest Odin release...');
         const release = await getRepositoryLatestRelease(
             {
                 owner: 'odin-lang',
@@ -102,14 +109,17 @@ const m = {
             },
             octokit
         );
-        return m.parseVersion(release.tag_name);
+        const odinVersion = m.parseVersion(release.tag_name);
+        core.info(`Latest Odin release is "${odinVersion.join('-')}"`);
+        return odinVersion;
     },
 
     async findRelease(
         version: OdinVersion,
         octokit: Octokit
     ): Promise<Release> {
-        return await getRepositoryReleaseByTag(
+        core.info(`Finding Odin release for version "${version.join('-')}"...`);
+        const release = await getRepositoryReleaseByTag(
             {
                 owner: 'odin-lang',
                 repo: 'odin',
@@ -117,27 +127,33 @@ const m = {
             },
             octokit
         );
+        core.info(
+            `Found Odin release for version "${version.join('-')}" (release ${release.id})`
+        );
+        return release;
     },
 
     async downloadOdinRelease(
-        version: OdinVersion | 'latest',
+        version: OdinVersion,
         destinationFolder: PathLike,
         octokit: Octokit
     ): Promise<PathLike> {
-        let dlVersion = version;
-        if (dlVersion === 'latest') {
-            dlVersion = await m.getLatestRelease(octokit);
-        }
-
-        return downloadRepositoryReleaseAsset(
+        core.info(
+            `Downloading Odin release "${version.join('-')}" to "${destinationFolder.toString('utf-8')}"...`
+        );
+        const archivePath = await downloadRepositoryReleaseAsset(
             {
                 owner: 'odin-lang',
                 repo: 'odin',
-                asset_id: (await m.findRelease(dlVersion, octokit)).id
+                asset_id: (await m.findRelease(version, octokit)).id
             },
             destinationFolder,
             octokit
         );
+        core.info(
+            `Downloaded Odin release archive to "${archivePath.toString('utf-8')}"`
+        );
+        return archivePath;
     }
 };
 

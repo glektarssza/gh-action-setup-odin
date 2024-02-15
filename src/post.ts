@@ -1,22 +1,32 @@
 //-- NodeJS
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 //-- NPM Packages
 import * as core from '@actions/core';
 
 async function main(): Promise<void> {
-    const odinPath = core.getState('odin-path');
+    let destinationPath = core.getInput('destination', {required: false});
+    if (!destinationPath) {
+        destinationPath = path.resolve(
+            process.env['GITHUB_WORKSPACE']!,
+            './.odin'
+        );
+    }
     try {
-        await fs.access(odinPath);
+        await fs.access(destinationPath);
     } catch {
-        core.warning(`Could not find Odin path at "${odinPath}"`);
+        core.info(
+            `Could not find Odin path at "${destinationPath}", skipping cleanup`
+        );
         return;
     }
-    const stat = await fs.stat(odinPath);
+    const stat = await fs.stat(destinationPath);
     if (!stat.isDirectory()) {
-        throw new Error(`Cannot remove "${odinPath}" (not a directory)`);
+        throw new Error(`Cannot remove "${destinationPath}" (not a directory)`);
     }
-    await fs.rm(odinPath, {recursive: true, force: true});
+    core.info(`Cleaning up Odin install at "${destinationPath}"`);
+    await fs.rm(destinationPath, {recursive: true, force: true});
 }
 
 main().catch((err: Error) => {

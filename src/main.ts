@@ -56,7 +56,6 @@ async function main(): Promise<void> {
     if (addToPath) {
         core.addPath(destinationPath);
     }
-    core.saveState('odin-path', destinationPath);
 }
 
 main().catch((err: Error) => {

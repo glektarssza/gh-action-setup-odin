@@ -37,10 +37,12 @@ async function main(): Promise<void> {
         destinationPath,
         octokit
     );
+    core.info(`Unpacking Odin archive to "${destinationPath}"`);
     const archiveFile = await fs.open(archivePath, fs.constants.O_RDONLY);
     try {
         const rs = archiveFile.createReadStream();
         await compressing.zip.uncompress(rs, destinationPath);
+        core.info(`Unpacked Odin archive`);
     } finally {
         await archiveFile.close();
     }
@@ -55,6 +57,9 @@ async function main(): Promise<void> {
     );
     if (addToPath) {
         core.addPath(destinationPath);
+        core.info(
+            `Odin binary at "${path.resolve(destinationPath, 'odin')}${process.platform === 'win32' ? '.exe' : ''}" added to system path`
+        );
     }
 }
 

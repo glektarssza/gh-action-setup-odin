@@ -44,5 +44,61 @@ describe('module:utils', () => {
             //-- Then
             expect(r).toEqual(GitHubActionStage.PostMain);
         });
+        it('should return `GitHubActionStage.PostMain` if the `mainFinished` state is set', () => {
+            //-- Given
+            mockedCore.getState
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('true')
+                .mockReturnValueOnce('');
+
+            //-- When
+            const r = testModule.getGitHubActionStage();
+
+            //-- Then
+            expect(r).toEqual(GitHubActionStage.PostMain);
+        });
+        it('should return `GitHubActionStage.Main` if the `mainStarted` state is set', () => {
+            //-- Given
+            mockedCore.getState
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('true')
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('');
+
+            //-- When
+            const r = testModule.getGitHubActionStage();
+
+            //-- Then
+            expect(r).toEqual(GitHubActionStage.Main);
+        });
+        it('should return `GitHubActionStage.Main` if the `preMainFinished` state is set', () => {
+            //-- Given
+            mockedCore.getState
+                .mockReturnValueOnce('true')
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('');
+
+            //-- When
+            const r = testModule.getGitHubActionStage();
+
+            //-- Then
+            expect(r).toEqual(GitHubActionStage.Main);
+        });
+        it('should return `GitHubActionStage.PreMain` if no state is set', () => {
+            //-- Given
+            mockedCore.getState
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('')
+                .mockReturnValueOnce('');
+
+            //-- When
+            const r = testModule.getGitHubActionStage();
+
+            //-- Then
+            expect(r).toEqual(GitHubActionStage.PreMain);
+        });
     });
 });

@@ -37,7 +37,7 @@
         "lint": "npm run lint:cache -- -- ./src/ ./tests/",
         "lint:ci": "npm run lint -- -- -- ./src/ ./tests/",
         "test": "jest",
-        "test:ci": "npm run coverage -- --reporters github-actions,summary",
+        "test:ci": "npm run coverage -- --reporters github-actions --reporters summary",
         "coverage": "npm run test -- --collectCoverage",
         "build": "npm run build:dist",
         "build:dist": "npm run build:dist:main && npm run build:dist:post",

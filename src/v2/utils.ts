@@ -99,5 +99,11 @@ export function getTestingModule(): typeof m {
 }
 
 /* eslint-disable no-empty-pattern, @typescript-eslint/unbound-method */
-export const {} = m;
+export const {
+    getGitHubActionStage,
+    isGitHubActionStage,
+    isMainGitHubActionStage,
+    isPostMainGitHubActionStage,
+    isPreMainGitHubActionStage
+} = m;
 /* eslint-enable no-empty-pattern, @typescript-eslint/unbound-method */

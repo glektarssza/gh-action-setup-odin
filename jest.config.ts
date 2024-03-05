@@ -2,7 +2,7 @@
 import path from 'node:path';
 
 //-- NPM Packages
-import type {JestConfigWithTsJest} from 'ts-jest';
+import {JestConfigWithTsJest} from 'ts-jest';
 
 /**
  * The Jest configuration.
@@ -10,7 +10,7 @@ import type {JestConfigWithTsJest} from 'ts-jest';
 const config: JestConfigWithTsJest = {
     rootDir: path.resolve(__dirname),
     testEnvironment: 'node',
-    testMatch: ['./tests/*.spec.ts', './tests/**/*.spec.ts'],
+    testMatch: ['**.spec.ts'],
     reporters: ['default'],
     resetMocks: true,
     maxConcurrency: 5,

@@ -55,5 +55,5 @@ export function getTestModule(): typeof m {
 }
 
 /* eslint-disable no-empty-pattern, @typescript-eslint/unbound-method */
-export const {} = m;
+export const {getGitHubActionStage} = m;
 /* eslint-enable no-empty-pattern, @typescript-eslint/unbound-method */
